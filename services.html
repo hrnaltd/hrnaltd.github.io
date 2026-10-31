@@ -4,6 +4,31 @@ title: Our Services
 permalink: /services/
 ---
 
+<style>
+/* Aviation hover ile acilmasin */
+#portfolio-work .block .portfolio-contant ul li.Aviation:hover .overly {
+    opacity: 0;
+}
+
+/* Tiklandiginda acilsin */
+#portfolio-work .block .portfolio-contant ul li.Aviation.is-open .overly {
+    opacity: 1;
+}
+
+/* Animasyon tiklama ile calissin */
+#portfolio-work .block .portfolio-contant ul li.Aviation:hover .position-center {
+    transform: translate(0%, 50%);
+}
+
+#portfolio-work .block .portfolio-contant ul li.Aviation.is-open .position-center {
+    transform: translate(0%, -50%);
+}
+
+#portfolio-work li.Aviation a {
+    cursor: pointer;
+}
+</style>
+
     <!-- Slider Start -->
 <section id="global-header">
     <div class="container">
@@ -34,7 +59,7 @@ permalink: /services/
               <div class="portfolio-contant">
                 <ul id="portfolio-contant-active">
                     <li class="mix Aviation">
-                      <a href="#">
+                       <a href="#" class="aviation-toggle" aria-expanded="false">
                         <img src="{{ site.baseurl }}/img/portfolio/aviation1.jpg" alt="">
                         <div class="overly">
                           <div class="position-center">
@@ -143,3 +168,28 @@ permalink: /services/
     </div>
   </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var aviation = document.querySelector(
+        "#portfolio-work li.Aviation"
+    );
+
+    if (!aviation) return;
+
+    var link = aviation.querySelector(".aviation-toggle");
+
+    if (!link) return;
+
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        aviation.classList.toggle("is-open");
+
+        link.setAttribute(
+            "aria-expanded",
+            aviation.classList.contains("is-open")
+        );
+    });
+});
+</script>
